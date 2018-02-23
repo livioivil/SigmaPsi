@@ -18,4 +18,3 @@ pairsSigmaPsi(matrix(rnorm(300),100,3))
 \author{
 Gianmarco Altoè, Laura Boscaro, Marta Bagno
 }
-

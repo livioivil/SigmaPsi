@@ -44,12 +44,17 @@
 #'   punteggi superiori a 64   ? soggetti alessitimici.
 #'   
 #' @export
-scale_ecr_params <- list(invert=c(3,15,19,22,25,27,29,31,33,35),
+
+
+
+scale_ecr_params <- list(invert=c(34,8, 36, 23, 5, 32, 3, 33, 25,16,21,15,19,24),
                           values.ranges=c(1,7),
                           na.action=NA,
                           transf=function(items){
-                            cbind(ECR.avoidance=rowMeans(items[,(1:18)*2-1],na.rm=TRUE)*18,
-                                  ECR.anxiety=rowMeans(items[,(1:18)*2],na.rm=TRUE)*18)
+                            id_ansia=c(13,31,7,22,26,11,30,35,19,27,24,9,14,28,29,6,1,18)
+                            id_evita=setdiff(1:36,id_ansia)
+                            cbind(ECR.avoidance=rowMeans(items[,id_evita],na.rm=TRUE),
+                                  ECR.anxiety=rowMeans(items[,id_ansia],na.rm=TRUE))
                           }
 )
 

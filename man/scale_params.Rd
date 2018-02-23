@@ -2,11 +2,11 @@
 % Please edit documentation in R/compute_scale_params.R
 \docType{data}
 \name{scale_params}
-\alias{scale_biaq_params}
-\alias{scale_das_params}
-\alias{scale_ecr_params}
 \alias{scale_params}
+\alias{scale_ecr_params}
+\alias{scale_das_params}
 \alias{scale_scl_params}
+\alias{scale_biaq_params}
 \alias{scale_tas20_params}
 \alias{scale_tas24_params}
 \title{Setting for computing scales of a few tests}
@@ -58,4 +58,3 @@ cut off sensato:
 A series of preformed setting for computing scales of a few tests
 }
 \keyword{datasets}
-

@@ -15,4 +15,3 @@ rowSums and rowMeans with a slight modification
 \author{
 Livio Finos
 }
-

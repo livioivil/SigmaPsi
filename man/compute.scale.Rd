@@ -33,4 +33,3 @@ DAS=compute.scale(items_DAS,prop.na=.20,
 \author{
 Livio Finos
 }
-

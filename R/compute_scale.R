@@ -52,7 +52,7 @@ compute.scale <- function(items,prop.na=.20, na.action="rowMeans",
                          x}))
                      }
   
-  temp=params$transf(items[keep,])
+  temp=params$transf(items[keep,,drop=FALSE])
   if(is.vector(temp)) temp=as.matrix(temp)
   out=matrix(,nrow(temp)+sum(!keep),ncol(temp),
              dimnames = list(rownames(items),colnames(temp)))

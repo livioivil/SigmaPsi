@@ -11,4 +11,3 @@ an R package for Psychometrics
 \author{
 Author: Livio Finos, Gianmarco Altoè, Massimiliano Pastore
 }
-

@@ -14,4 +14,3 @@ plotXresid(mod, x)
 \description{
 plot x vs residual of an lm model
 }
-

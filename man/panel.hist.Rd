@@ -25,4 +25,3 @@ Funzioni utili per pairs.sigmapsy
 \author{
 Laura Boscaro, Marta Bagno
 }
-

@@ -14,10 +14,9 @@ items_DAS
 \description{
 Sample data set of DAS items
 }
-\author{
-livio finos, Gianmarco Altoe'
-}
 \seealso{
 compute.scale
 }
-
+\author{
+livio finos, Gianmarco Altoe'
+}
