@@ -2,7 +2,7 @@
 #' 
 #' @title Setting for computing scales of a few tests
 #' @name scale_params
-#' @aliases scale_ecr_params scale_das_params scale_scl_params scale_biaq_params scale_tas20_params scale_tas24_params
+#' @aliases scale_dass_params scale_ecr_params scale_das_params scale_scl_params scale_biaq_params scale_tas20_params scale_tas24_params
 #' @description 
 #' DAS
 #'item dal 1 al 15, 18 e 19: i valori degli item vanno inseriti da 5 (tot d’accordo, sempre) a 0 (tot disaccordo, mai)
@@ -131,3 +131,55 @@ scale_biaq_params  <-list(invert=c(),
                               tot=1:19)
                             rowMeans.bylist(items,ids)
                           })
+
+#' @export 
+scale_dass_params <- list(values.ranges=c(0,3),
+                          na.action=NA,
+                          transf=function(items){
+                            id_depression=c(3,5,10,13,16,17,21)
+                            id_anxiety=c(2,4,7,9,15,19,20)
+                            id_stress=c(1,6,8,11,12,14,18) #setdiff(1:21,c(id_depression,id_anxiety))
+                            cbind(DASS.depression=rowSums(items[,id_depression,drop=FALSE],na.rm=TRUE),
+                                  DASS.anxiety=rowSums(items[,id_anxiety,drop=FALSE],na.rm=TRUE),
+                                  DASS.stress=rowSums(items[,id_stress,drop=FALSE],na.rm=TRUE))
+                          }
+)
+
+
+#' @export 
+scale_narcissistic_params <- list(values.ranges=c(0,13),
+                                  na.action=NA,
+                                  transf=function(items){
+                                    items_narcissistic_ita=list(
+                                      narc1=c("Non mi piace quando mi ritrovo a manipolare le persone.","Trovo facile manipolare le persone."),
+                                      narc2=c("Quando le persone si complimentano con me mi imbarazzo.","So che sono una brava persona perché tutti continuano a dirmelo."),
+                                      narc3=c("Non mi pesa seguire gli ordini.", "Mi piace avere autorità sulle persone."),
+                                      narc4=c("Insisto nell’avere il rispetto che mi è dovuto.","Di solito ottengo il rispetto che merito."),
+                                      narc5=c("Non mi piace particolarmente mettere in mostra il mio corpo.","Mi piace mettere in mostra il mio corpo."),
+                                      narc6=c("Il potere fine a se stesso non mi interessa.","Ho una forte volontà di comandare."), 
+                                      narc7=c("Mi piace fare le cose per le altre persone.","Mi aspetto molto dalle altre persone."),
+                                      narc8=c("Il mio corpo non è niente di speciale.","Mi piace guardare il mio corpo."),
+                                      narc9=c("Comandare non significa molto per me.","Le persone sembrano sempre riconoscere la mia autorità."),
+                                      narc10=c("Prenderò le mie soddisfazioni come verranno.","Non sono mai soddisfatto finché non otterrò tutto ciò che merito."),
+                                      narc11=c("Cerco di non essere un esibizionista.","Di solito mi metto in mostra se ne ho l’occasione."),
+                                      narc12=c("La capacità di comandare è una qualità che richiede lungo tempo per svilupparsi.","Sono un leader nato."), 
+                                      narc13=c("Non sono particolarmente interessato a guardarmi allo specchio.","Mi piace guardarmi allo specchio.")
+                                    )
+                                    
+                                    
+                                    for (i in 1:ncol(narc)){
+                                      items[,i]=factor(items[,i],levels=items_narcissistic_ita[[i]])
+                                      items[,i]=as.numeric(items[,i])-1
+                                    }
+                                    
+                                    
+                                    id_leadership=c(3, 6, 9, 12)
+                                    id_esibizionismo=c(2, 5, 8, 11,13)
+                                    id_sfruttamento=c(1, 4, 7, 10) 
+                                    
+                                    cbind(NARCIS.leadership=rowSums(items[,id_leadership,drop=FALSE],na.rm=TRUE),
+                                          NARCIS.esibiz=rowSums(items[,id_esibizionismo,drop=FALSE],na.rm=TRUE),
+                                          NARCIS.sfrutt=rowSums(items[,id_sfruttamento,drop=FALSE],na.rm=TRUE),
+                                          NARCIS.totale=rowSums(items,na.rm=TRUE))
+                                  }
+)
