@@ -151,25 +151,26 @@ scale_narcissistic_params <- list(values.ranges=c(0,13),
                                   na.action=NA,
                                   transf=function(items){
                                     items_narcissistic_ita=list(
-                                      narc1=c("Non mi piace quando mi ritrovo a manipolare le persone.","Trovo facile manipolare le persone."),
-                                      narc2=c("Quando le persone si complimentano con me mi imbarazzo.","So che sono una brava persona perché tutti continuano a dirmelo."),
-                                      narc3=c("Non mi pesa seguire gli ordini.", "Mi piace avere autorità sulle persone."),
-                                      narc4=c("Insisto nell’avere il rispetto che mi è dovuto.","Di solito ottengo il rispetto che merito."),
-                                      narc5=c("Non mi piace particolarmente mettere in mostra il mio corpo.","Mi piace mettere in mostra il mio corpo."),
-                                      narc6=c("Il potere fine a se stesso non mi interessa.","Ho una forte volontà di comandare."), 
-                                      narc7=c("Mi piace fare le cose per le altre persone.","Mi aspetto molto dalle altre persone."),
-                                      narc8=c("Il mio corpo non è niente di speciale.","Mi piace guardare il mio corpo."),
-                                      narc9=c("Comandare non significa molto per me.","Le persone sembrano sempre riconoscere la mia autorità."),
-                                      narc10=c("Prenderò le mie soddisfazioni come verranno.","Non sono mai soddisfatto finché non otterrò tutto ciò che merito."),
-                                      narc11=c("Cerco di non essere un esibizionista.","Di solito mi metto in mostra se ne ho l’occasione."),
-                                      narc12=c("La capacità di comandare è una qualità che richiede lungo tempo per svilupparsi.","Sono un leader nato."), 
-                                      narc13=c("Non sono particolarmente interessato a guardarmi allo specchio.","Mi piace guardarmi allo specchio.")
+                                      narc1=c("^Non mi","^Trovo"),
+                                      narc2=c("^Quando le","^So che"),
+                                      narc3=c("^Non mi", "^Mi piace "),
+                                      narc4=c("^Insisto nel","^Di solito"),
+                                      narc5=c("^Non mi","^Mi piace"),
+                                      narc6=c("^Il potere","^Ho una "), 
+                                      narc7=c("^Mi piace","^Mi aspetto"),
+                                      narc8=c("^Il mio ","^Mi piace"),
+                                      narc9=c("^Comandare non","^Le persone"),
+                                      narc10=c("^Prender","^Non sono"),
+                                      narc11=c("^Cerco di","^Di solito"),
+                                      narc12=c("^La capacit","^Sono un"), 
+                                      narc13=c("^Non sono","^Mi piace")
                                     )
                                     
-                                    
-                                    for (i in 1:ncol(narc)){
-                                      items[,i]=factor(items[,i],levels=items_narcissistic_ita[[i]])
-                                      items[,i]=as.numeric(items[,i])-1
+                                    items0=items
+                                    items=array(NA,dim(items0))
+                                    for (i in 1:ncol(items)){
+                                      items[grep(items_narcissistic_ita[[i]][1],items0[,i]),i]=0                                      
+                                      items[grep(items_narcissistic_ita[[i]][2],items0[,i]),i]=1
                                     }
                                     
                                     
